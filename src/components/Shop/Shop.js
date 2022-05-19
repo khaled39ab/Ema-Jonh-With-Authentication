@@ -4,6 +4,8 @@ import './Shop.css'
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
+    const [cart, setCart] = useState([]);
+
     useEffect( ()=>{
         fetch('products.json')
         .then(res => res.json())
@@ -11,7 +13,10 @@ const Shop = () => {
     }, [])
 
     const handleAddToCart = (product) =>{
-        console.log(product);
+       /*  cart.push(product) //according to js   
+       But react works with ref(bellow, copy the cart & also add product in ana array)*/
+       const newCart = [...cart, product]; 
+       setCart(newCart);
     }
     return (
         <div className="shop-container">
@@ -26,6 +31,7 @@ const Shop = () => {
             </div>
             <div className="cart-container">
                 <h2>Order Summary</h2>
+                <p>Selected Items: {cart.length}</p>
             </div>
         </div>
     );
