@@ -10,6 +10,10 @@
     margin-top: 100px;
 }
 
+.cart-container{
+    background-color: rgba(255, 153, 0, 0.3);
+}
+
 /* Small device */
 @media screen and (min-width: 400px) {
     .products-container{

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
 
@@ -6,32 +7,31 @@ const Shop = () => {
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
 
-    useEffect( ()=>{
+    useEffect(() => {
         fetch('products.json')
-        .then(res => res.json())
-        .then(data => setProducts(data))
+            .then(res => res.json())
+            .then(data => setProducts(data))
     }, [])
 
-    const handleAddToCart = (product) =>{
-       /*  cart.push(product) //according to js   
-       But react works with ref(bellow, copy the cart & also add product in ana array)*/
-       const newCart = [...cart, product]; 
-       setCart(newCart);
+    const handleAddToCart = (product) => {
+        /*  cart.push(product) //according to js   
+        But react works with ref(bellow, copy the cart & also add product in ana array)*/
+        const newCart = [...cart, product];
+        setCart(newCart);
     }
     return (
         <div className="shop-container">
             <div className="products-container">
                 {
-                    products.map(product=> <Product 
-                        key = {product.id}
-                        product = {product}
-                        handleAddToCart = {handleAddToCart}
+                    products.map(product => <Product
+                        key={product.id}
+                        product={product}
+                        handleAddToCart={handleAddToCart}
                     ></Product>)
                 }
             </div>
             <div className="cart-container">
-                <h2>Order Summary</h2>
-                <p>Selected Items: {cart.length}</p>
+                <Cart cart={cart}></Cart>
             </div>
         </div>
     );
