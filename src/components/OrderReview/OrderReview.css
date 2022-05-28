@@ -1,0 +1,28 @@
+.clear-cart-btn{
+    color: white;
+    font-size: 18px;
+    background-color: rgba(255, 48, 48, 1);
+    width: 232px;
+    height: 48px;
+    border: 0;
+    border-radius: 5px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.review-order-btn{
+    color: white;
+    font-size: 18px;
+    background-color: rgba(255, 153, 0, 1);
+    width: 232px;
+    height: 48px;
+    border: 0;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.review-items-container{
+    margin: 0 auto;
+}

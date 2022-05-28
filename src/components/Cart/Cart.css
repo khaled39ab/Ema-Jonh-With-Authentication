@@ -1,4 +1,5 @@
 .cart{
     position: sticky;
     top: 0;
+    padding-left: 10px;
 }

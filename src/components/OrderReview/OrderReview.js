@@ -1,33 +1,52 @@
+import { faArrowRight, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useCart from '../../hooks/useCart';
 import useProducts from '../../hooks/useProducts';
-import { removeFromDb } from '../../utilities/fakedb';
+import { deleteShoppingCart, removeFromDb } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import ReviewItems from '../ReviewItems/ReviewItems';
+import './OrderReview.css'
 
 const OrderReview = () => {
     const [products, setProducts] = useProducts();
     const [cart, setCart] = useCart(products);
 
-    const handleRemoveProduct = product =>{
+    const handleRemoveProduct = product => {
         const rest = cart.filter(prod => prod.id !== product.id);
         setCart(rest);
         removeFromDb(product.id)
+    }
+
+    const clearCart = (products) => {
+        const rest = cart.filter(prod => prod.id === products.id);
+        setCart(rest);
+        deleteShoppingCart()
     }
 
     return (
         <div className="shop-container">
             <div className="review-items-container">
                 {
-                    cart.map(product => <ReviewItems 
+                    cart.map(product => <ReviewItems
                         key={product.id}
                         product={product}
-                        handleRemoveProduct = {handleRemoveProduct}
+                        handleRemoveProduct={handleRemoveProduct}
                     ></ReviewItems>)
                 }
             </div>
             <div className="cart-container">
-                <Cart cart={cart}></Cart>
+                <Cart cart={cart}>
+                    <button onClick={() => clearCart(products)} className='clear-cart-btn'>
+                        Clear Cart <span><FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon></span>
+                    </button> <br />
+                    <Link to={'/inventory'}>
+                        <button className='review-order-btn'>
+                            Proceed Checkout <span><FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon></span>
+                        </button>
+                    </Link>
+                </Cart>
             </div>
         </div>
     );
