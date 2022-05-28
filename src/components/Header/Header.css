@@ -7,11 +7,11 @@
     padding-left: 140px;
     padding-right: 140px;
 }
+
 .header a{
-    text-decoration: none;
-    color: white;
     margin-right: 32px;
 }
-.header a:hover{
-    color: orangered;
+
+.custom-link{
+    display: flex;
 }
