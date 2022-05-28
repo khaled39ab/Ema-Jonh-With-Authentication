@@ -9,6 +9,7 @@
 
 .review-item img{
     height: 90px;
+    border-radius: 5px;
 }
 
 .product-info-container{
@@ -21,6 +22,30 @@
     margin: 0;
 }
 
+.product-name{
+    color: blueviolet;
+    margin-top: 0;
+}
+
 .orange-color{
     color: orange;
+}
+
+.delete-container{
+    display: flex;
+    align-items: center;
+}
+
+.delete-btn{
+    height: 55px;
+    width: 55px;
+    border: 0;
+    border-radius: 50%;
+    background-color: rgb(251, 230, 230);
+    cursor: pointer;
+}
+
+.delete-icon{
+    font-size: 30px;
+    color: rgb(239, 105, 105);
 }
