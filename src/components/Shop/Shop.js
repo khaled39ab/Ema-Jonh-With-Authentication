@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import useCart from '../../hooks/useCart';
 import useProducts from '../../hooks/useProducts';
 import { addToDb, getStoredCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
@@ -6,10 +7,10 @@ import Product from '../Product/Product';
 import './Shop.css'
 
 const Shop = () => {
-    const [products] = useProducts();
-    const [cart, setCart] = useState([]);
+    const [products, setProducts] = useProducts();
+    const [cart, setCart] = useCart(products);
 
-    useEffect(() => {
+   /*  useEffect(() => {
         const storedCart = getStoredCart()
         const savedCart = [];
         for (const id in storedCart) {
@@ -21,7 +22,7 @@ const Shop = () => {
             }
         }
         setCart(savedCart)
-    }, [products])
+    }, [products]) */
 
     const handleAddToCart = (selectedProduct) => {
         /*  cart.push(product) //according to js   
