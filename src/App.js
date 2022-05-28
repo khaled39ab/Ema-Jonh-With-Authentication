@@ -6,6 +6,7 @@ import NotFound from './components/NotFound/NotFound';
 import Shop from './components/Shop/Shop';
 import About from './components/About/About';
 import OrderReview from './components/OrderReview/OrderReview';
+import Inventory from './components/Inventory/Inventory';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/shop' element={<Shop></Shop>}></Route>
         <Route path='/order-review' element={<OrderReview></OrderReview>}></Route>
+        <Route path='inventory' element = {<Inventory></Inventory>}></Route>
         <Route path='/about' element={<About></About>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
