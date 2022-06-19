@@ -19,6 +19,7 @@ const Header = () => {
                 <CustomLink to={'/order-review'}>Order Review</CustomLink>
                 <CustomLink to={'/inventory'}>Inventory</CustomLink>
                 <CustomLink to={'/about'}>About</CustomLink>
+                <CustomLink to={'/login'}>Log In</CustomLink>
             </div>
         </nav>
     );
