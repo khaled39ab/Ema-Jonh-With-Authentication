@@ -1,11 +1,12 @@
-import { Button } from 'bootstrap';
 import React from 'react';
 import { useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
+import './Login.css'
 
 const Login = () => {
-    const [validated, setValidated] = useState('');
+    const [validated, setValidated] = useState(false);
     const [error, setError] = useState('');
     const [submitted, setSubmitted] = useState('');
 
