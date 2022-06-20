@@ -50,7 +50,7 @@ const SignUp = () => {
                         Please provide a valid password.
                     </Form.Control.Feedback>
                 </Form.Group>
-                <Form.Group as={Col} controlId="formBasicPassword">
+                <Form.Group as={Col} controlId="formBasicPassword02">
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" required />
                     <Form.Control.Feedback type="invalid">
@@ -93,7 +93,7 @@ const SignUp = () => {
                     <div className='logIn-sec'>
                         <p>Already have an account?</p>
                         <div>
-                            <Link to={'/'}>
+                            <Link to={'/login'}>
                                 <button>Log In</button>
                             </Link>
                         </div>
