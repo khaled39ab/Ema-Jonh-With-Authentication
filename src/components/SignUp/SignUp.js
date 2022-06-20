@@ -1,8 +1,14 @@
 import React from 'react';
+import { useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import './SignUp.css';
 
 const SignUp = () => {
+    const [validated, setValidated] = useState(false);
+    const [error, setError] = useState('');
+    const [submitted, setSubmitted] = useState('');
+
     return (
         <div className='signUp-container w-50 p-4 m-4 mx-auto'>
             <h1 className='reg-title text-center mb-4'>Want to Registration!</h1>
