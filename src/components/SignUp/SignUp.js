@@ -50,6 +50,13 @@ const SignUp = () => {
                         Please provide a valid password.
                     </Form.Control.Feedback>
                 </Form.Group>
+                <Form.Group as={Col} controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" placeholder="Password" required />
+                    <Form.Control.Feedback type="invalid">
+                        Please provide a valid password.
+                    </Form.Control.Feedback>
+                </Form.Group>
                 <Row className="mb-3">
                     <Form.Group as={Col} md="8" controlId="validationCustom03">
                         <Form.Label>Contact Number:</Form.Label>
@@ -60,36 +67,11 @@ const SignUp = () => {
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group as={Col} md="4" controlId="validationCustom04">
-                        <Form.Label>Date of Birth</Form.Label>
-                        <Form.Control
-                            required
-                            type="text"
-                            placeholder="DD/MM/YYYY"
-                        />
-                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                    </Form.Group>
-                </Row>
-                <Row className="mb-3">
                     <Form.Group as={Col} md="4" controlId="validationCustom05">
                         <Form.Label>City</Form.Label>
                         <Form.Control type="text" placeholder="City" required />
                         <Form.Control.Feedback type="invalid">
                             Please provide a valid city.
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="4" controlId="validationCustom06">
-                        <Form.Label>Zip</Form.Label>
-                        <Form.Control type="text" placeholder="Zip" required />
-                        <Form.Control.Feedback type="invalid">
-                            Please provide a valid zip.
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="4" controlId="validationCustom07">
-                        <Form.Label>Country</Form.Label>
-                        <Form.Control type="text" placeholder="Country" required />
-                        <Form.Control.Feedback type="invalid">
-                            Enter your Country name.
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Row>
