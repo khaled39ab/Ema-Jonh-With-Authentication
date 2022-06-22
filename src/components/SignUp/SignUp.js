@@ -1,7 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
 import './SignUp.css';
 
 const SignUp = () => {
@@ -16,45 +18,59 @@ const SignUp = () => {
     const [city, setCity] = useState('');
     const [error, setError] = useState('');
     const [submitted, setSubmitted] = useState('');
-    
-    const handleNameBlur = () =>{
+    const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
+
+    const handleNameBlur = () => {
         setName(firstName + ' ' + lastName);
     }
 
-    const handleFirstNameBlur = e =>{
+    const handleFirstNameBlur = e => {
         setFirstName(e.target.value);
     }
 
-    const handleLastNameBlur = e =>{
+    const handleLastNameBlur = e => {
         setLastName(e.target.value)
     }
 
-    const handleEmailBlur = e =>{
+    const handleEmailBlur = e => {
         setEmail(e.target.value)
     }
 
-    const handlePasswordBlur = e =>{
+    const handlePasswordBlur = e => {
         setPassword(e.target.value)
     }
 
-    const handleConfirmPasswordBlur = e =>{
+    const handleConfirmPasswordBlur = e => {
         setConfirmPassword(e.target.value)
     }
 
-    const handlePhoneBlur = e =>{
+    const handlePhoneBlur = e => {
         setPhone(e.target.value)
     }
 
-    const handleCityBlur = e =>{
+    const handleCityBlur = e => {
         setCity(e.target.value)
     }
 
     const handleCreateUser = e => {
-        e.preventDefault();
         handleNameBlur();
+        e.preventDefault();
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+        }
+        setValidated(true);
 
-        if (password !== confirmPassword){
+
+        if (password !== confirmPassword) {
             setError('Confirm password did not match')
+        }
+
+        if (!/(?=.{6,})(?=.*[!#$%&@? "])/.test(password)) {
+            setError('Password should minimum 6 character with 1 special character.')
+            return;
         }
     }
 
