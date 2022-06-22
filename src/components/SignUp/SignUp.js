@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import './SignUp.css';
@@ -10,7 +10,7 @@ const SignUp = () => {
     const [validated, setValidated] = useState(false);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [name, setName] = useState('');
+    const [displayName, setDisplayName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -18,19 +18,20 @@ const SignUp = () => {
     const [city, setCity] = useState('');
     const [error, setError] = useState('');
     const [submitted, setSubmitted] = useState('');
+    const navigate = useNavigate();
     const [createUserWithEmailAndPassword,user] = useCreateUserWithEmailAndPassword(auth);
-    const navigate = useNavigate()
-
-    const handleNameBlur = () => {
-        setName(firstName + ' ' + lastName);
-    }
-
+    const [updateProfile] = useUpdateProfile(auth);
+    
     const handleFirstNameBlur = e => {
         setFirstName(e.target.value);
     }
-
+    
     const handleLastNameBlur = e => {
         setLastName(e.target.value)
+    }
+    
+    const handleNameBlur = () => {
+        setDisplayName(firstName + ' ' + lastName);
     }
 
     const handleEmailBlur = e => {
@@ -54,7 +55,7 @@ const SignUp = () => {
     }
 
     if (user){
-        navigate('/')
+        navigate('/login')
     }
 
     const handleCreateUser = e => {
@@ -71,6 +72,7 @@ const SignUp = () => {
 
         if (password !== confirmPassword) {
             setError('Confirm password did not match')
+            return;
         }
 
         if (!/(?=.{6,})(?=.*[!#$%&@? "])/.test(password)) {
@@ -78,8 +80,7 @@ const SignUp = () => {
             return;
         }
 
-        createUserWithEmailAndPassword(email, password)
-        console.log(user);
+        createUserWithEmailAndPassword(email, password, displayName, phone);
     }
 
     return (
