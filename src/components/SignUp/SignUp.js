@@ -6,17 +6,66 @@ import './SignUp.css';
 
 const SignUp = () => {
     const [validated, setValidated] = useState(false);
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [phone, setPhone] = useState('');
+    const [city, setCity] = useState('');
     const [error, setError] = useState('');
     const [submitted, setSubmitted] = useState('');
+    
+    const handleNameBlur = () =>{
+        setName(firstName + ' ' + lastName);
+    }
+
+    const handleFirstNameBlur = e =>{
+        setFirstName(e.target.value);
+    }
+
+    const handleLastNameBlur = e =>{
+        setLastName(e.target.value)
+    }
+
+    const handleEmailBlur = e =>{
+        setEmail(e.target.value)
+    }
+
+    const handlePasswordBlur = e =>{
+        setPassword(e.target.value)
+    }
+
+    const handleConfirmPasswordBlur = e =>{
+        setConfirmPassword(e.target.value)
+    }
+
+    const handlePhoneBlur = e =>{
+        setPhone(e.target.value)
+    }
+
+    const handleCityBlur = e =>{
+        setCity(e.target.value)
+    }
+
+    const handleCreateUser = e => {
+        e.preventDefault();
+        handleNameBlur();
+
+        if (password !== confirmPassword){
+            setError('Confirm password did not match')
+        }
+    }
 
     return (
         <div className='signUp-container w-50 p-4 m-4 mx-auto'>
             <h1 className='reg-title text-center mb-4'>Want to Registration!</h1>
-            <Form noValidate validated={validated}>
+            <Form noValidate validated={validated} >
                 <Row className="mb-3">
                     <Form.Group as={Col} md="6" controlId="validationCustom01">
                         <Form.Label>First name</Form.Label>
-                        <Form.Control
+                        <Form.Control onBlur={handleFirstNameBlur}
                             required
                             type="text"
                             placeholder="First name"
@@ -25,7 +74,7 @@ const SignUp = () => {
                     </Form.Group>
                     <Form.Group as={Col} md="6" controlId="validationCustom02">
                         <Form.Label>Last name</Form.Label>
-                        <Form.Control
+                        <Form.Control onBlur={handleLastNameBlur}
                             required
                             type="text"
                             placeholder="Last name"
@@ -35,14 +84,14 @@ const SignUp = () => {
                 </Row>
                 <Form.Group as={Col} controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" required />
+                    <Form.Control onBlur={handleEmailBlur} type="email" placeholder="Enter email" required />
                     <Form.Control.Feedback type="invalid">
                         Please provide a valid email.
                     </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group as={Col} controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" required />
+                    <Form.Control onBlur={handlePasswordBlur} type="password" placeholder="Password" required />
                     <Form.Text className="text-muted">
                         Password should minimum 6 character with 1 special character.
                     </Form.Text>
@@ -51,16 +100,13 @@ const SignUp = () => {
                     </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group as={Col} controlId="formBasicPassword02">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" required />
-                    <Form.Control.Feedback type="invalid">
-                        Please provide a valid password.
-                    </Form.Control.Feedback>
+                    <Form.Label>Confirm Password</Form.Label>
+                    <Form.Control onBlur={handleConfirmPasswordBlur} type="password" placeholder="Confirm Password" required />
                 </Form.Group>
                 <Row className="mb-3">
                     <Form.Group as={Col} md="8" controlId="validationCustom03">
                         <Form.Label>Contact Number:</Form.Label>
-                        <Form.Control
+                        <Form.Control onBlur={handlePhoneBlur}
                             required
                             type="text"
                             placeholder="Phone No"
@@ -69,27 +115,19 @@ const SignUp = () => {
                     </Form.Group>
                     <Form.Group as={Col} md="4" controlId="validationCustom05">
                         <Form.Label>City</Form.Label>
-                        <Form.Control type="text" placeholder="City" required />
+                        <Form.Control onBlur={handleCityBlur} type="text" placeholder="City" required />
                         <Form.Control.Feedback type="invalid">
                             Please provide a valid city.
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Row>
-                <Form.Group className="mb-3">
-                    <Form.Check
-                        required
-                        label="Agree to terms and conditions"
-                        feedback="You must agree before submitting."
-                        feedbackType="invalid"
-                    />
-                </Form.Group>
 
                 {
                     error ? <p className='text-danger'>{error}</p> : <p className='text-success'>{submitted}</p>
                 }
 
                 <div className='btn-container mt-4'>
-                    <Button type="submit">Sign Up</Button>
+                    <Button onClick={handleCreateUser} type="submit">Sign Up</Button>
                     <div className='logIn-sec'>
                         <p>Already have an account?</p>
                         <div>
