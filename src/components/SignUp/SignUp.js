@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import './SignUp.css';
 
@@ -18,7 +18,8 @@ const SignUp = () => {
     const [city, setCity] = useState('');
     const [error, setError] = useState('');
     const [submitted, setSubmitted] = useState('');
-    const [createUserWithEmailAndPassword, user] = useCreateUserWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword,user] = useCreateUserWithEmailAndPassword(auth);
+    const navigate = useNavigate()
 
     const handleNameBlur = () => {
         setName(firstName + ' ' + lastName);
@@ -50,6 +51,10 @@ const SignUp = () => {
 
     const handleCityBlur = e => {
         setCity(e.target.value)
+    }
+
+    if (user){
+        navigate('/')
     }
 
     const handleCreateUser = e => {
