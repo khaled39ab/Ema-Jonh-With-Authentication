@@ -18,7 +18,7 @@ const SignUp = () => {
     const [city, setCity] = useState('');
     const [error, setError] = useState('');
     const [submitted, setSubmitted] = useState('');
-    const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword, user] = useCreateUserWithEmailAndPassword(auth);
 
     const handleNameBlur = () => {
         setName(firstName + ' ' + lastName);
@@ -59,9 +59,9 @@ const SignUp = () => {
         if (form.checkValidity() === false) {
             e.preventDefault();
             e.stopPropagation();
+            setValidated(true);
             return;
         }
-        setValidated(true);
 
 
         if (password !== confirmPassword) {
@@ -72,6 +72,9 @@ const SignUp = () => {
             setError('Password should minimum 6 character with 1 special character.')
             return;
         }
+
+        createUserWithEmailAndPassword(email, password)
+        console.log(user);
     }
 
     return (
