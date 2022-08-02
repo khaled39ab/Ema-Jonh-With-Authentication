@@ -32,18 +32,18 @@ const Shop = () => {
         But react works with ref(bellow, copy the cart & also add product in an array)
         const newCart = [...cart, selectedProduct];*/
         let newCart = [];
-        const existProducts = cart.find(product => product.id === selectedProduct.id);
+        const existProducts = cart.find(product => product._id === selectedProduct._id);
         if (!existProducts) {
             selectedProduct.quantity = 1;
             newCart = [...cart, selectedProduct]
         } else {
-            const restProducts = cart.filter(product => product.id !== selectedProduct.id)
+            const restProducts = cart.filter(product => product._id !== selectedProduct._id)
             existProducts.quantity = existProducts.quantity + 1;
             newCart = [...restProducts, existProducts]
         }
 
         setCart(newCart);
-        addToDb(selectedProduct.id);
+        addToDb(selectedProduct._id);
     }
     return (
         <div className="shop-container">
