@@ -29,7 +29,7 @@ const Shop = () => {
 
     const handleAddToCart = (selectedProduct) => {
         /*  cart.push(product) //according to js   
-        But react works with ref(bellow, copy the cart & also add product in ana array)
+        But react works with ref(bellow, copy the cart & also add product in an array)
         const newCart = [...cart, selectedProduct];*/
         let newCart = [];
         const existProducts = cart.find(product => product.id === selectedProduct.id);
