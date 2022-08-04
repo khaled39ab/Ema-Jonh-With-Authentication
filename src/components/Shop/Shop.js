@@ -10,11 +10,18 @@ import Product from '../Product/Product';
 import './Shop.css'
 
 const Shop = () => {
-    const [products, setProducts] = useProducts();
-    const [cart, setCart] = useCart(products);
+    // const [products, setProducts] = useProducts();
+    const [products, setProducts] = useState([]);
+    const [cart, setCart] = useCart([products]);
     const [pageCount, setPageCount] = useState(0);
     const [page, setPage] = useState(0);
     const [itemCount, setItemCount] = useState(10);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/products?page=${page}&itemCount=${itemCount}`)
+            .then(res => res.json())
+            .then(data => setProducts(data))
+    }, [])
 
     useEffect(() => {
         fetch('http://localhost:5000/productCount')
