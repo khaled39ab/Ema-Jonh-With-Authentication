@@ -20,6 +20,12 @@
     margin-right: 15px;
     border: 1px solid orange;
     background-color: white;
+    padding: 5px 10px;
+}
+
+.pagination .selected{
+    background-color: yellowgreen;
+    color: white;
 }
 
 .cart-container{
