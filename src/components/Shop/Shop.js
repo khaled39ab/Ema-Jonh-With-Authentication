@@ -12,7 +12,7 @@ import './Shop.css'
 const Shop = () => {
     // const [products, setProducts] = useProducts();
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useCart([products]);
+    const [cart, setCart] = useCart();
     const [pageCount, setPageCount] = useState(0);
     const [page, setPage] = useState(0);
     const [itemCount, setItemCount] = useState(10);
@@ -21,7 +21,7 @@ const Shop = () => {
         fetch(`http://localhost:5000/products?page=${page}&itemCount=${itemCount}`)
             .then(res => res.json())
             .then(data => setProducts(data))
-    }, [])
+    }, [page, itemCount])
 
     useEffect(() => {
         fetch('http://localhost:5000/productCount')
@@ -33,7 +33,7 @@ const Shop = () => {
             })
     }, [])
 
-    /*  useEffect(() => {
+     /* useEffect(() => {
          const storedCart = getStoredCart()
          const savedCart = [];
          for (const id in storedCart) {
@@ -45,7 +45,7 @@ const Shop = () => {
              }
          }
          setCart(savedCart)
-     }, [products]) */
+     }, [products]); */
 
     const handleAddToCart = (selectedProduct) => {
         /*  cart.push(product) //according to js   
@@ -77,7 +77,7 @@ const Shop = () => {
                         ></Product>)
                     }
                 </div>
-                <div className='pagination'>
+                {<div className='pagination'>
                     {
                         [...Array(pageCount).keys()]
                             .map(number => <button
@@ -87,14 +87,14 @@ const Shop = () => {
                                 {number + 1}</button>)
                     }
                     {
-                        <select defaultValue={10} onChange={(e) => setItemCount(e.target.value)}>
+                        <select defaultValue={10} onChange={e => setItemCount(e.target.value)}>
                             <option value="5">5</option>
                             <option value="10" >10</option>
                             <option value="15">15</option>
                             <option value="20">20</option>
                         </select>
                     }
-                </div>
+                </div>}
             </div>
             <div className="cart-container">
                 <Cart cart={cart}>

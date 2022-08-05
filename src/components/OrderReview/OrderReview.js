@@ -11,7 +11,7 @@ import './OrderReview.css'
 
 const OrderReview = () => {
     const [products, setProducts] = useProducts();
-    const [cart, setCart] = useCart(products);
+    const [cart, setCart] = useCart();
 
     const handleRemoveProduct = product => {
         const rest = cart.filter(prod => prod._id !== product._id);
