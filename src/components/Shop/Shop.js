@@ -13,7 +13,6 @@ const Shop = () => {
     // const [products, setProducts] = useProducts();
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useCart();
-    // const [cart, setCart] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [page, setPage] = useState(0);
     const [itemCount, setItemCount] = useState(10);

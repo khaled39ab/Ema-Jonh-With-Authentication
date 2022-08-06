@@ -8,7 +8,6 @@ const useCart = () => {
         const storedCart = getStoredCart();
         const savedCart = [];
         const keys = Object.keys(storedCart);
-        console.log(keys);
 
         fetch('http://localhost:5000/productByKeys', {
             method: 'POST',
