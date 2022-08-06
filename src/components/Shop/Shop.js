@@ -13,6 +13,7 @@ const Shop = () => {
     // const [products, setProducts] = useProducts();
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useCart();
+    // const [cart, setCart] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [page, setPage] = useState(0);
     const [itemCount, setItemCount] = useState(10);
@@ -21,7 +22,7 @@ const Shop = () => {
         fetch(`http://localhost:5000/products?page=${page}&itemCount=${itemCount}`)
             .then(res => res.json())
             .then(data => setProducts(data))
-    }, [page, itemCount])
+    }, [page, itemCount]);
 
     useEffect(() => {
         fetch('http://localhost:5000/productCount')
@@ -31,7 +32,7 @@ const Shop = () => {
                 const pages = Math.ceil(count / 10);
                 setPageCount(pages);
             })
-    }, [])
+    }, []);
 
      /* useEffect(() => {
          const storedCart = getStoredCart()
